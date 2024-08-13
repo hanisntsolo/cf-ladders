@@ -5,7 +5,7 @@ document.write(`<!-- Global site tag (gtag.js) - Google Analytics -->
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-132341920-2');
+  gtag('config', '');
 </script>
 `)
 
@@ -124,14 +124,25 @@ function validateUsername(username){
 	})
 }
 
-loadScript("https://code.jquery.com/jquery-3.4.1.min.js",() => {
-	$(document).ready(function(){
-		let username = getCookie("cf_username")
-		if(!username){
-			username = "hanisntsolo"
-			validateUsername(username)
-		} else {
-			startService();
-		}
-	}); 
-})
+loadScript("https://code.jquery.com/jquery-3.4.1.min.js", () => {
+    $(document).ready(function() {
+        let username = getCookie("cf_username");
+
+        if (!username) {
+            // Set default username if no username is set
+            username = "hanisntsolo";
+        }
+
+        // Prompt the user to update the username if desired
+        let newUsername = prompt("No username is set, Enter your Codeforces username", username);
+        
+        if (newUsername && newUsername !== username) {
+            // Validate and update the cookie if the username is changed
+            validateUsername(newUsername);
+            setCookie("cf_username", newUsername, 365); // Save the new username in a cookie for 365 days
+            username = newUsername;
+        }
+
+        startService(username);
+    });
+});
