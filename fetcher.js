@@ -141,7 +141,11 @@ loadScript("https://code.jquery.com/jquery-3.4.1.min.js", () => {
             validateUsername(newUsername);
             setCookie("cf_username", newUsername, 365); // Save the new username in a cookie for 365 days
             username = newUsername;
-        }
+        } else {
+			validateUsername(username);
+            setCookie("cf_username", username, 365); // Save the new username in a cookie for 365 days
+            username = username;
+		}
 
         startService(username);
     });
