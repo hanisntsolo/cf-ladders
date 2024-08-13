@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master  # Change this if you want to trigger on a different branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Create Directory for GitHub Pages
+        run: |
+          mkdir -p gh-pages/server  # Create the directory for the html folder
+          mkdir -p gh-pages  # Create the gh-pages directory
+
+      - name: Copy html folder to gh-pages directory
+        run: cp -r server/* gh-pages/server/  # Use -r flag to copy directories recursively
+
+      - name: Add CNAME file for Custom Domain
+        run: echo "cf-ladders.hanisntsolo.com" > gh-pages/CNAME
+
+      - name: Install Tree Command
+        run: sudo apt-get install tree
+
+      - name: List Contents of gh-pages Directory
+        run: |
+          echo "Contents of gh-pages directory:"
+          tree gh-pages
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          publish_dir: gh-pages  # Directory containing your HTML and JS files
+          destination_dir: ./server/Ladders.html  # Optional: specify if you want a different path in the gh-pages branch
