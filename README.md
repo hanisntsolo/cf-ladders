@@ -9,8 +9,8 @@ how to get it running
 
 ```
 
-git clone https://github.com/earthshakira/a2oj-clientside.git
-cd a2oj-clientside/server
+git clone https://github.com/hanisntsolo/cf-ladders.git
+cd /server
 ./start.sh
 
 ```
