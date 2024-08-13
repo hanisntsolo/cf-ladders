@@ -22,7 +22,7 @@ jobs:
         run: cp -r server/* gh-pages/server/  # Use -r flag to copy directories recursively
 
       - name: Add CNAME file for Custom Domain
-        run: echo "cf-ladders.hanisntsolo.com" > gh-pages/CNAME
+        run: echo "cfl.hanisntsolo.com" > gh-pages/CNAME
 
       - name: Install Tree Command
         run: sudo apt-get install tree
