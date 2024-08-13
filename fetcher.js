@@ -126,9 +126,9 @@ function validateUsername(username){
 
 loadScript("https://code.jquery.com/jquery-3.4.1.min.js",() => {
 	$(document).ready(function(){
-		let username = getCookie("cf_username") === undefined ? 'hanisntsolo' : getCookie("cf_username");
+		let username = getCookie("cf_username")
 		if(!username){
-			username = prompt("No username is set,Enter your codeforces username")
+			username = "hanisntsolo"
 			validateUsername(username)
 		} else {
 			startService();
