@@ -134,7 +134,7 @@ loadScript("https://code.jquery.com/jquery-3.4.1.min.js", () => {
         }
 
         // Prompt the user to update the username if desired
-        let newUsername = prompt("No username is set, Enter your Codeforces username", username);
+        let newUsername = prompt("Enter your Codeforces username", username);
         
         if (newUsername && newUsername !== username) {
             // Validate and update the cookie if the username is changed
